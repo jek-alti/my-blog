@@ -1,59 +1,78 @@
 /* =========================================================
-   MyBlog using Claude — 전역 스타일
-   색·간격·폰트는 CSS 변수로 정의하고 재사용한다.
+   MyBlog using Claude — NEON 테마
+   블랙 배경 + 네온 글자. 색은 CSS 변수로 정의하고 재사용.
+   HTML/JS 의 클래스·ID 구조는 그대로 두고 스타일만 재구성.
    ========================================================= */
 
-/* ---------- 라이트 팔레트 (기본) ---------- */
-:root {
-  --bg: #fbfaf7;
-  --surface: rgba(255, 255, 255, 0.82); /* 본문 카드 배경(반투명) */
-  --surface-solid: #ffffff;
-  --text: #23201c;
-  --text-muted: #6b655c;
-  --border: #e6e1d8;
-  --accent: #b5651d;
-  --accent-hover: #8f4e13;
-  --code-bg: #f2efe8;
-  --code-text: #863b1a;
-  --quote-bar: #d9cdb8;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
-
-  /* 배경 이미지 위에 덧씌우는 오버레이 색(가독성용) */
-  --bg-overlay: rgba(251, 250, 247, 0.72);
-  --bg-image-opacity: 0.18; /* 배경 이미지를 옅게 */
-
-  /* 레이아웃 */
-  --content-width: 720px;
-  --radius: 14px;
-  --space: 1rem;
-
-  /* 타이포그래피 */
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-  --line-height: 1.7;
-}
-
-/* ---------- 다크 팔레트 ---------- */
+/* ---------- 기본(다크): 시안/마젠타 네온 ---------- */
+:root,
 :root[data-theme="dark"] {
-  --bg: #16140f;
-  --surface: rgba(32, 29, 24, 0.82);
-  --surface-solid: #201d18;
-  --text: #ece7de;
-  --text-muted: #a49c8e;
-  --border: #35302a;
-  --accent: #e6a86b;
-  --accent-hover: #f0bd8a;
-  --code-bg: #262119;
-  --code-text: #e6a86b;
-  --quote-bar: #4a4238;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --bg: #04040a;
+  --bg-2: #080812;
+  --surface: rgba(10, 12, 24, 0.72);
+  --surface-solid: #0a0c18;
+  --text: #d7faff;
+  --text-muted: #7fa8b8;
+  --border: rgba(0, 255, 240, 0.28);
 
-  --bg-overlay: rgba(22, 20, 15, 0.78);
-  --bg-image-opacity: 0.12;
+  --neon-1: #00fff0; /* 시안 */
+  --neon-2: #ff2bd6; /* 마젠타 */
+  --neon-3: #9d5cff; /* 퍼플 */
+
+  --accent: var(--neon-1);
+  --accent-2: var(--neon-2);
+
+  --code-bg: rgba(0, 255, 240, 0.06);
+  --code-text: #6dffe9;
+  --quote-bar: var(--neon-2);
+
+  --glow-accent: 0 0 6px rgba(0, 255, 240, 0.7), 0 0 18px rgba(0, 255, 240, 0.35);
+  --glow-accent-2: 0 0 6px rgba(255, 43, 214, 0.7), 0 0 18px rgba(255, 43, 214, 0.35);
+  --card-glow: 0 0 0 1px var(--border), 0 0 20px rgba(0, 255, 240, 0.12);
+  --card-glow-hover: 0 0 0 1px var(--neon-1),
+    0 0 28px rgba(0, 255, 240, 0.35), 0 0 60px rgba(255, 43, 214, 0.15);
+
+  --content-width: 1080px;
+  --read-width: 720px;
+  --radius: 12px;
+
+  --font-body: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --font-display: "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas,
+    monospace;
+  --line-height: 1.75;
 }
 
-/* ---------- 리셋 & 기본 ---------- */
+/* ---------- 대체(light 토글): 핑크/그린 네온, 여전히 블랙 배경 ---------- */
+:root[data-theme="light"] {
+  --bg: #05060a;
+  --bg-2: #0a0710;
+  --surface: rgba(18, 10, 22, 0.72);
+  --surface-solid: #120a16;
+  --text: #ffe9fb;
+  --text-muted: #c58fb8;
+  --border: rgba(57, 255, 20, 0.3);
+
+  --neon-1: #39ff14; /* 그린 */
+  --neon-2: #ff5cf0; /* 핑크 */
+  --neon-3: #ffd21f; /* 옐로 */
+
+  --accent: var(--neon-1);
+  --accent-2: var(--neon-2);
+
+  --code-bg: rgba(57, 255, 20, 0.07);
+  --code-text: #8dff6b;
+  --quote-bar: var(--neon-2);
+
+  --glow-accent: 0 0 6px rgba(57, 255, 20, 0.7), 0 0 18px rgba(57, 255, 20, 0.35);
+  --glow-accent-2: 0 0 6px rgba(255, 92, 240, 0.7),
+    0 0 18px rgba(255, 92, 240, 0.35);
+  --card-glow: 0 0 0 1px var(--border), 0 0 20px rgba(57, 255, 20, 0.12);
+  --card-glow-hover: 0 0 0 1px var(--neon-1),
+    0 0 28px rgba(57, 255, 20, 0.35), 0 0 60px rgba(255, 92, 240, 0.15);
+}
+
+/* ---------- 리셋 ---------- */
 *,
 *::before,
 *::after {
@@ -72,45 +91,52 @@ body {
   font-family: var(--font-body);
   line-height: var(--line-height);
   font-size: 1.05rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* 배경 이미지: images/bg.jpg 를 옅게 깔기.
-   ::before 레이어로 두고 opacity 로 흐리게 → 본문 가독성 유지.
-   파일이 없으면 아무것도 안 보이고 --bg 색이 그대로 배경이 된다. */
+/* 배경: 네온 글로우 + 격자 그리드 (이미지 없음, 순수 블랙) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-image: url("../images/bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: var(--bg-image-opacity);
+  background:
+    radial-gradient(60% 50% at 15% 0%, rgba(0, 255, 240, 0.12), transparent 70%),
+    radial-gradient(50% 50% at 100% 100%, rgba(255, 43, 214, 0.12), transparent 70%),
+    var(--bg);
   pointer-events: none;
 }
 
-/* 배경 위 가독성 보조 오버레이 */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: var(--bg-overlay);
+  background-image:
+    linear-gradient(rgba(0, 255, 240, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 240, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
   pointer-events: none;
 }
 
-/* ---------- 레이아웃 ---------- */
+/* ---------- 레이아웃 컨테이너 ---------- */
 .site-header,
-.site-main,
 .site-footer {
   width: 100%;
   max-width: var(--content-width);
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: 1.5rem;
 }
 
+.site-main {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding: 1.5rem 1.5rem 4rem;
+}
+
+/* ---------- 헤더 ---------- */
 .site-header {
   display: flex;
   align-items: center;
@@ -118,58 +144,72 @@ body::after {
   gap: 1rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(4, 4, 10, 0.92), rgba(4, 4, 10, 0.55));
+  border-bottom: 1px solid var(--border);
 }
 
 .site-title {
   margin: 0;
-  font-size: 1.4rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .site-title a {
-  color: var(--text);
+  color: var(--accent);
   text-decoration: none;
+  text-shadow: var(--glow-accent);
 }
 
-.site-main {
-  padding-top: 1rem;
-  padding-bottom: 3rem;
+.site-title a::before {
+  content: "▓ ";
+  color: var(--accent-2);
+  text-shadow: var(--glow-accent-2);
 }
 
 .site-footer {
   padding-top: 2rem;
   padding-bottom: 2.5rem;
+  margin-top: 3rem;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-family: var(--font-display);
   border-top: 1px solid var(--border);
-  margin-top: 2rem;
+  text-align: center;
 }
 
-/* ---------- 다크모드 토글 버튼 ---------- */
+/* ---------- 다크모드 토글 ---------- */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
   padding: 0;
   border: 1px solid var(--border);
-  border-radius: 50%;
+  border-radius: 10px;
   background: var(--surface-solid);
-  color: var(--text);
+  color: var(--accent);
   cursor: pointer;
   font-size: 1.15rem;
   line-height: 1;
-  transition: border-color 0.2s ease, transform 0.1s ease;
+  box-shadow: var(--card-glow);
+  transition: box-shadow 0.2s ease, transform 0.1s ease, color 0.2s ease;
 }
 
 .theme-toggle:hover {
-  border-color: var(--accent);
+  box-shadow: var(--card-glow-hover);
+  color: var(--accent-2);
 }
 
 .theme-toggle:active {
-  transform: scale(0.94);
+  transform: scale(0.92);
 }
 
 .theme-toggle:focus-visible {
@@ -177,65 +217,85 @@ body::after {
   outline-offset: 2px;
 }
 
-/* 아이콘: 라이트일 땐 달, 다크일 땐 해 */
 .theme-toggle .icon-dark {
   display: none;
 }
-:root[data-theme="dark"] .theme-toggle .icon-light {
+:root[data-theme="light"] .theme-toggle .icon-light {
   display: none;
 }
-:root[data-theme="dark"] .theme-toggle .icon-dark {
+:root[data-theme="light"] .theme-toggle .icon-dark {
   display: inline;
 }
 
-/* ---------- 글 목록 ---------- */
+/* ---------- 홈: 글 목록을 네온 카드 그리드로 ---------- */
 .post-list {
   list-style: none;
-  margin: 0;
+  margin: 1rem 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.4rem;
 }
 
 .post-card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.4rem 1.5rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(4px);
-  transition: transform 0.12s ease, border-color 0.2s ease;
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--card-glow);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.25s ease;
+}
+
+/* 카드 좌상단 네온 코너 악센트 */
+.post-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  border-top-left-radius: var(--radius);
+  opacity: 0.8;
 }
 
 .post-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: var(--card-glow-hover);
 }
 
 .post-card h2 {
-  margin: 0 0 0.35rem;
-  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   line-height: 1.35;
 }
 
 .post-card h2 a {
   color: var(--text);
   text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .post-card h2 a:hover {
   color: var(--accent);
+  text-shadow: var(--glow-accent);
 }
 
 .post-meta {
-  color: var(--text-muted);
-  font-size: 0.88rem;
+  color: var(--accent-2);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
   margin-bottom: 0.5rem;
 }
 
 .post-summary {
-  margin: 0.5rem 0 0.8rem;
+  margin: 0.5rem 0 1rem;
   color: var(--text-muted);
 }
 
@@ -243,56 +303,77 @@ body::after {
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .tag {
-  font-size: 0.78rem;
+  font-family: var(--font-display);
+  font-size: 0.74rem;
   color: var(--accent);
+  border: 1px solid var(--border);
   background: var(--code-bg);
   border-radius: 999px;
-  padding: 0.15rem 0.6rem;
+  padding: 0.15rem 0.65rem;
+  transition: box-shadow 0.2s ease;
 }
 
-/* ---------- 개별 글(article) ---------- */
+.tag:hover {
+  box-shadow: var(--glow-accent);
+}
+
+/* ---------- 개별 글 ---------- */
 .article-card {
+  max-width: var(--read-width);
+  margin-inline: auto;
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2rem 2rem 2.5rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(4px);
-}
-
-.article-header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.2rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.article-header h1 {
-  margin: 0 0 0.4rem;
-  font-size: 2rem;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  padding: 2.2rem 2.2rem 2.8rem;
+  box-shadow: var(--card-glow);
+  backdrop-filter: blur(6px);
 }
 
 .back-link {
   display: inline-block;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.3rem;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .back-link:hover {
   color: var(--accent);
+  text-shadow: var(--glow-accent);
 }
 
-/* ---------- 마크다운 본문 타이포그래피 ---------- */
+.article-header {
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-header h1 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1.25;
+  color: var(--accent);
+  text-shadow: var(--glow-accent);
+  letter-spacing: -0.01em;
+}
+
+.article-header .post-meta {
+  margin: 0;
+}
+
+/* ---------- 마크다운 본문 ---------- */
 .article-body {
   overflow-wrap: break-word;
 }
@@ -300,94 +381,111 @@ body::after {
 .article-body h1,
 .article-body h2,
 .article-body h3 {
+  font-family: var(--font-display);
   line-height: 1.3;
-  margin-top: 2rem;
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
+  margin-top: 2.2rem;
+  margin-bottom: 0.7rem;
+  color: var(--text);
 }
 
 .article-body h2 {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(0, 255, 240, 0.25);
 }
+
 .article-body h3 {
-  font-size: 1.2rem;
+  font-size: 1.18rem;
+  color: var(--accent-2);
 }
 
 .article-body p {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.2rem;
 }
 
 .article-body a {
   color: var(--accent);
-  text-underline-offset: 2px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
 }
 .article-body a:hover {
-  color: var(--accent-hover);
+  text-shadow: var(--glow-accent);
+  text-decoration-color: var(--accent);
 }
 
 .article-body ul,
 .article-body ol {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.2rem;
   padding-left: 1.4rem;
 }
-
 .article-body li {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
+}
+.article-body li::marker {
+  color: var(--accent);
 }
 
 .article-body blockquote {
-  margin: 1.4rem 0;
-  padding: 0.4rem 1.1rem;
-  border-left: 4px solid var(--quote-bar);
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.2rem;
+  border-left: 3px solid var(--quote-bar);
+  background: linear-gradient(90deg, rgba(255, 43, 214, 0.06), transparent);
   color: var(--text-muted);
 }
 
 .article-body img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 10px;
   display: block;
-  margin: 1.4rem auto;
+  margin: 1.5rem auto;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-glow);
 }
 
 .article-body hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 2rem 0;
+  margin: 2.2rem 0;
 }
 
 /* 인라인 코드 */
 .article-body code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-family: var(--font-display);
+  font-size: 0.88em;
   background: var(--code-bg);
   color: var(--code-text);
-  padding: 0.15em 0.4em;
-  border-radius: 5px;
+  padding: 0.15em 0.45em;
+  border-radius: 6px;
+  border: 1px solid var(--border);
 }
 
-/* 코드 블록: 가로 넘침 방지 */
+/* 코드 블록 */
 .article-body pre {
-  background: var(--code-bg);
+  background: var(--bg-2);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 1rem 1.1rem;
+  padding: 1.1rem 1.2rem;
   overflow-x: auto;
-  margin: 0 0 1.3rem;
+  margin: 0 0 1.4rem;
+  box-shadow: inset 0 0 20px rgba(0, 255, 240, 0.06);
 }
 
 .article-body pre code {
   background: none;
+  border: none;
   color: var(--text);
   padding: 0;
   font-size: 0.88rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-/* 표: 가로 넘침 방지 위해 wrapper 로 감쌈 */
+/* 표 */
 .table-wrap {
   overflow-x: auto;
-  margin: 0 0 1.3rem;
+  margin: 0 0 1.4rem;
+  border-radius: 10px;
 }
 
 .article-body table {
@@ -399,37 +497,58 @@ body::after {
 .article-body th,
 .article-body td {
   border: 1px solid var(--border);
-  padding: 0.5rem 0.75rem;
+  padding: 0.55rem 0.8rem;
   text-align: left;
 }
 
 .article-body th {
   background: var(--code-bg);
+  color: var(--accent);
+  font-family: var(--font-display);
 }
 
 /* ---------- 상태 메시지 ---------- */
 .status {
   text-align: center;
   color: var(--text-muted);
-  padding: 2rem 0;
+  font-family: var(--font-display);
+  padding: 2.5rem 0;
+  letter-spacing: 0.04em;
 }
 
-.status.error {
+.status::before {
+  content: "> ";
   color: var(--accent);
 }
 
-/* ---------- 반응형: 좁은 화면 ---------- */
-@media (max-width: 600px) {
+.status.error {
+  color: var(--accent-2);
+  text-shadow: var(--glow-accent-2);
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 640px) {
   body {
     font-size: 1rem;
   }
+  .post-list {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
   .article-card {
-    padding: 1.3rem 1.2rem 1.8rem;
+    padding: 1.5rem 1.3rem 2rem;
   }
   .article-header h1 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
   .site-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* 움직임 최소화 선호 사용자 배려 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }
