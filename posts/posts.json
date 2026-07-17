@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "today-learned",
+    "title": "오늘 배운 것",
+    "date": "2026-07-12",
+    "summary": "클로드 코드로 블로그를 만들며 배운 HTML·CSS·JavaScript의 역할을 구조·표현·동작으로 정리했습니다.",
+    "tags": ["회고", "HTML", "CSS", "JavaScript"]
+  },
+  {
+    "slug": "hello-blog",
+    "title": "블로그를 시작하며",
+    "date": "2026-07-11",
+    "summary": "마크다운으로 글을 쓰고, 프레임워크 없이 순수 HTML·CSS·JS로 만든 정적 블로그입니다.",
+    "tags": ["소개", "블로그"]
+  },
+  {
+    "slug": "markdown-guide",
+    "title": "마크다운 문법 한눈에 보기",
+    "date": "2026-07-09",
+    "summary": "제목, 목록, 코드 블록, 표, 인용구까지 — 이 블로그가 지원하는 마크다운 요소를 예시로 정리했습니다.",
+    "tags": ["마크다운", "가이드"]
+  },
+  {
+    "slug": "dark-mode",
+    "title": "다크 모드는 어떻게 동작하나",
+    "date": "2026-07-05",
+    "summary": "CSS 변수와 localStorage로 라이트/다크 테마를 구현하고 깜빡임(FOUC)을 없앤 방법.",
+    "tags": ["CSS", "다크모드"]
+  }
+]

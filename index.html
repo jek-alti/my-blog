@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyBlog using Claude</title>
+    <meta name="description" content="마크다운으로 쓰는 정적 블로그" />
+
+    <!-- FOUC 방지: 저장된 테마를 첫 페인트 전에 적용 -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var theme =
+            saved ||
+            (window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1 class="site-title"><a href="index.html">MyBlog using Claude</a></h1>
+      <button
+        type="button"
+        class="theme-toggle"
+        aria-label="테마 전환"
+        title="테마 전환"
+      >
+        <span class="icon-light" aria-hidden="true">🌙</span>
+        <span class="icon-dark" aria-hidden="true">☀️</span>
+      </button>
+    </header>
+
+    <main class="site-main">
+      <p id="list-status" class="status">글 목록을 불러오는 중…</p>
+      <ul id="post-list" class="post-list"></ul>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 MyBlog using Claude · 마크다운으로 만든 정적 블로그</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

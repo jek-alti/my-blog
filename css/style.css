@@ -1,0 +1,435 @@
+/* =========================================================
+   MyBlog using Claude — 전역 스타일
+   색·간격·폰트는 CSS 변수로 정의하고 재사용한다.
+   ========================================================= */
+
+/* ---------- 라이트 팔레트 (기본) ---------- */
+:root {
+  --bg: #fbfaf7;
+  --surface: rgba(255, 255, 255, 0.82); /* 본문 카드 배경(반투명) */
+  --surface-solid: #ffffff;
+  --text: #23201c;
+  --text-muted: #6b655c;
+  --border: #e6e1d8;
+  --accent: #b5651d;
+  --accent-hover: #8f4e13;
+  --code-bg: #f2efe8;
+  --code-text: #863b1a;
+  --quote-bar: #d9cdb8;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  /* 배경 이미지 위에 덧씌우는 오버레이 색(가독성용) */
+  --bg-overlay: rgba(251, 250, 247, 0.72);
+  --bg-image-opacity: 0.18; /* 배경 이미지를 옅게 */
+
+  /* 레이아웃 */
+  --content-width: 720px;
+  --radius: 14px;
+  --space: 1rem;
+
+  /* 타이포그래피 */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --line-height: 1.7;
+}
+
+/* ---------- 다크 팔레트 ---------- */
+:root[data-theme="dark"] {
+  --bg: #16140f;
+  --surface: rgba(32, 29, 24, 0.82);
+  --surface-solid: #201d18;
+  --text: #ece7de;
+  --text-muted: #a49c8e;
+  --border: #35302a;
+  --accent: #e6a86b;
+  --accent-hover: #f0bd8a;
+  --code-bg: #262119;
+  --code-text: #e6a86b;
+  --quote-bar: #4a4238;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  --bg-overlay: rgba(22, 20, 15, 0.78);
+  --bg-image-opacity: 0.12;
+}
+
+/* ---------- 리셋 & 기본 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: var(--line-height);
+  font-size: 1.05rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* 배경 이미지: images/bg.jpg 를 옅게 깔기.
+   ::before 레이어로 두고 opacity 로 흐리게 → 본문 가독성 유지.
+   파일이 없으면 아무것도 안 보이고 --bg 색이 그대로 배경이 된다. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: var(--bg-image-opacity);
+  pointer-events: none;
+}
+
+/* 배경 위 가독성 보조 오버레이 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-overlay);
+  pointer-events: none;
+}
+
+/* ---------- 레이아웃 ---------- */
+.site-header,
+.site-main,
+.site-footer {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.site-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-main {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.site-footer {
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* ---------- 다크모드 토글 버튼 ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-solid);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: border-color 0.2s ease, transform 0.1s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 아이콘: 라이트일 땐 달, 다크일 땐 해 */
+.theme-toggle .icon-dark {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle .icon-light {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle .icon-dark {
+  display: inline;
+}
+
+/* ---------- 글 목록 ---------- */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px);
+  transition: transform 0.12s ease, border-color 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.post-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.post-card h2 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  color: var(--accent);
+}
+
+.post-meta {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-summary {
+  margin: 0.5rem 0 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- 태그 ---------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag {
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: var(--code-bg);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* ---------- 개별 글(article) ---------- */
+.article-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 2rem 2.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px);
+}
+
+.article-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-header h1 {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* ---------- 마크다운 본문 타이포그래피 ---------- */
+.article-body {
+  overflow-wrap: break-word;
+}
+
+.article-body h1,
+.article-body h2,
+.article-body h3 {
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.article-body h2 {
+  font-size: 1.5rem;
+}
+.article-body h3 {
+  font-size: 1.2rem;
+}
+
+.article-body p {
+  margin: 0 0 1.15rem;
+}
+
+.article-body a {
+  color: var(--accent);
+  text-underline-offset: 2px;
+}
+.article-body a:hover {
+  color: var(--accent-hover);
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 1.15rem;
+  padding-left: 1.4rem;
+}
+
+.article-body li {
+  margin-bottom: 0.35rem;
+}
+
+.article-body blockquote {
+  margin: 1.4rem 0;
+  padding: 0.4rem 1.1rem;
+  border-left: 4px solid var(--quote-bar);
+  color: var(--text-muted);
+}
+
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 1.4rem auto;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* 인라인 코드 */
+.article-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 0.15em 0.4em;
+  border-radius: 5px;
+}
+
+/* 코드 블록: 가로 넘침 방지 */
+.article-body pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  margin: 0 0 1.3rem;
+}
+
+.article-body pre code {
+  background: none;
+  color: var(--text);
+  padding: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* 표: 가로 넘침 방지 위해 wrapper 로 감쌈 */
+.table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1.3rem;
+}
+
+.article-body table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.article-body th,
+.article-body td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.article-body th {
+  background: var(--code-bg);
+}
+
+/* ---------- 상태 메시지 ---------- */
+.status {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem 0;
+}
+
+.status.error {
+  color: var(--accent);
+}
+
+/* ---------- 반응형: 좁은 화면 ---------- */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+  .article-card {
+    padding: 1.3rem 1.2rem 1.8rem;
+  }
+  .article-header h1 {
+    font-size: 1.6rem;
+  }
+  .site-title {
+    font-size: 1.2rem;
+  }
+}
