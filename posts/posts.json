@@ -1,5 +1,12 @@
 [
   {
+    "slug": "github-deploy",
+    "title": "GitHub로 블로그 배포하기 — 커밋부터 자동 배포까지",
+    "date": "2026-07-18",
+    "summary": "커밋과 푸시의 차이부터 GitHub Pages, GitHub Actions 자동 배포까지 — 오늘 블로그를 인터넷에 올리며 배운 과정을 정리했습니다.",
+    "tags": ["회고", "Git", "GitHub", "배포"]
+  },
+  {
     "slug": "today-learned",
     "title": "오늘 배운 것",
     "date": "2026-07-12",
