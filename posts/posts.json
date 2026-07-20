@@ -1,5 +1,12 @@
 [
   {
+    "slug": "claude-code-hooks",
+    "title": "Claude Code에 전역 안전장치 설정하기 — 위험 명령 차단 훅 만들기",
+    "date": "2026-07-18",
+    "summary": "rm -rf·sudo·curl|bash 같은 위험 명령을 PreToolUse 훅으로 차단하고, 설정 파일 자체까지 보호한 과정을 정리했습니다.",
+    "tags": ["회고", "Claude Code", "hook", "settings.json"]
+  },
+  {
     "slug": "github-deploy",
     "title": "GitHub로 블로그 배포하기 — 커밋부터 자동 배포까지",
     "date": "2026-07-18",
