@@ -1,5 +1,12 @@
 [
   {
+    "slug": "blog-to-webapp",
+    "title": "블로그를 웹앱 포트폴리오로 전환하기 — 서브에이전트 워크플로",
+    "date": "2026-07-22",
+    "summary": "CLAUDE.md를 웹앱 게시용으로 바꾸고 Plan→Build→Review→Embed 서브에이전트 워크플로로 웹앱 2개를 만든 과정과, 서브에이전트·배포에 대한 Q&A를 정리했습니다.",
+    "tags": ["회고", "Claude Code", "서브에이전트", "워크플로"]
+  },
+  {
     "slug": "claude-code-config-files",
     "title": "클로드 코드 지침과 설정 파일",
     "date": "2026-07-22",
