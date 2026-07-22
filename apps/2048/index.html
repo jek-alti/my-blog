@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2048</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1 class="title">2048</h1>
+      <div class="scores">
+        <div class="score-box">
+          <span class="score-label">SCORE</span>
+          <span class="score-value" id="score">0</span>
+        </div>
+        <div class="score-box">
+          <span class="score-label">BEST</span>
+          <span class="score-value" id="best">0</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="subbar">
+      <p class="hint">타일을 밀어 같은 숫자를 합치세요. 방향키 또는 스와이프.</p>
+      <button type="button" class="new-game" id="new-game">New Game</button>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <div class="grid-bg" id="grid-bg" aria-hidden="true"></div>
+        <div class="tiles" id="tiles"></div>
+        <div class="overlay" id="overlay" hidden>
+          <p class="overlay-msg" id="overlay-msg"></p>
+          <div class="overlay-actions" id="overlay-actions"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

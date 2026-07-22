@@ -41,8 +41,96 @@
     </header>
 
     <main class="site-main">
-      <p id="list-status" class="status">글 목록을 불러오는 중…</p>
-      <ul id="post-list" class="post-list"></ul>
+      <section class="apps-section">
+        <h2
+          style="
+            font-family: var(--font-display);
+            color: var(--accent);
+            text-shadow: var(--glow-accent);
+            margin: 0 0 1rem;
+          "
+        >
+          웹앱
+        </h2>
+        <ul class="post-list">
+          <li class="post-card">
+            <div
+              aria-hidden="true"
+              style="display: flex; gap: 0.4rem; margin-bottom: 0.9rem"
+            >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: 700;
+                  padding: 0.35rem 0.6rem;
+                  border-radius: 8px;
+                  background: var(--code-bg);
+                  color: var(--accent);
+                "
+                >2</span
+              >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: 700;
+                  padding: 0.35rem 0.6rem;
+                  border-radius: 8px;
+                  background: var(--code-bg);
+                  color: var(--accent);
+                "
+                >4</span
+              >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: 700;
+                  padding: 0.35rem 0.6rem;
+                  border-radius: 8px;
+                  background: var(--code-bg);
+                  color: var(--accent-2);
+                "
+                >8</span
+              >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: 700;
+                  padding: 0.35rem 0.6rem;
+                  border-radius: 8px;
+                  background: var(--code-bg);
+                  color: var(--accent-2);
+                "
+                >16</span
+              >
+            </div>
+            <h2><a href="apps/2048/index.html">2048 게임</a></h2>
+            <p class="post-meta">웹앱 · 퍼즐</p>
+            <p class="post-summary">
+              방향키(또는 모바일 스와이프)로 숫자 타일을 밀어 같은 수를 합치는
+              2048 퍼즐 게임. 현재 점수와 최고 점수판을 제공합니다.
+            </p>
+            <ul class="tags">
+              <li class="tag">#게임</li>
+              <li class="tag">#바닐라JS</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="posts-section">
+        <h2
+          style="
+            font-family: var(--font-display);
+            color: var(--accent);
+            text-shadow: var(--glow-accent);
+            margin: 2.5rem 0 1rem;
+          "
+        >
+          블로그 글
+        </h2>
+        <p id="list-status" class="status">글 목록을 불러오는 중…</p>
+        <ul id="post-list" class="post-list"></ul>
+      </section>
     </main>
 
     <footer class="site-footer">
