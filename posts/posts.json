@@ -1,5 +1,12 @@
 [
   {
+    "slug": "claude-code-config-files",
+    "title": "클로드 코드 지침과 설정 파일",
+    "date": "2026-07-22",
+    "summary": "CLAUDE.md, MCP·커넥터 설정, .claudeignore, .env, settings.json까지 — 클로드 코드를 구성하는 주요 파일의 종류와 역할을 표로 정리했습니다.",
+    "tags": ["Claude Code", "설정", "정리"]
+  },
+  {
     "slug": "claude-code-hooks",
     "title": "Claude Code에 전역 안전장치 설정하기 — 위험 명령 차단 훅 만들기",
     "date": "2026-07-18",
