@@ -1,5 +1,12 @@
 [
   {
+    "slug": "교차리뷰와-스킬-2026-07-26",
+    "title": "제작 AI와 평가 AI를 분리하기 — Gemini·Codex 교차 리뷰와 스킬",
+    "date": "2026-07-26",
+    "summary": "제작 AI ≠ 평가 AI 원리로 Claude↔Codex 교차 리뷰 루프를 PASS까지 돌리고, Gemini/Codex CLI 셋업·트러블슈팅과 하네스를 스킬로 패키징한 과정을 정리했습니다.",
+    "tags": ["회고", "Claude Code", "코드리뷰", "스킬"]
+  },
+  {
     "slug": "claude-하네스-자동화-2026-07-23",
     "title": "Claude Code 하네스 익히기 — 컨텍스트 관리부터 슬래시 명령·스킬까지",
     "date": "2026-07-23",
