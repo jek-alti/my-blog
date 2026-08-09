@@ -1,5 +1,12 @@
 [
   {
+    "slug": "씽킹모드-완전정리-2026-08-09",
+    "title": "클로드 코드 Thinking Mode와 Effort 완전 정리",
+    "date": "2026-08-09",
+    "summary": "편집모드·모델 설정부터 시작해, thinking mode가 화면 표시 스위치가 아니라 adaptive thinking의 추론 단계 자체를 켜고 끄는 스위치라는 것을 API 문서 레벨로 확인하고, effort와의 관계, content block 구조, 비용 구조까지 정리했습니다.",
+    "tags": ["회고", "Claude Code", "thinking mode", "adaptive thinking", "effort"]
+  },
+  {
     "slug": "스킬-실습-2026-08-07",
     "title": "스킬을 제대로 다뤄보기 — 커맨드 구분부터 마켓플레이스 설치, 실전 계획서 작성, Codex 검증까지",
     "date": "2026-08-07",
