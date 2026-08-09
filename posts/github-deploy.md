@@ -91,6 +91,31 @@ on:
 
 > 참고: `.github`처럼 점(`.`)으로 시작하는 폴더는 숨김 처리돼서 파일 탐색기에서 안 보일 수 있다. 없어진 게 아니라 가려진 것뿐이다.
 
+## 6. 다른 저장소에도 같은 방식 적용하기 — claude-code-master
+
+블로그(my-blog)를 GitHub Actions 방식으로 배포한 뒤, 책 실습용으로 새로 만든 `claude-code-master` 저장소도 처음엔 그냥 "Deploy from a branch"(legacy) 방식으로 켰다. 나중에 두 저장소의 배포 방식을 통일하고 싶어져서 이것도 Actions 방식으로 바꿔봤다.
+
+### 방법 1: 로컬에서 yml 파일 만들고 push
+
+가장 먼저 생각한 방법은 my-blog의 `.github/workflows/static.yml`을 그대로 복사해서 새 저장소에 넣고, `git add` → `git commit` → `git push` 한 뒤, Settings → Pages → Source를 "GitHub Actions"로 바꾸는 것이었다.
+
+### 방법 2 (실제로 쓴 방법): GitHub 웹에서 바로 만들기
+
+그런데 Settings → Pages 화면에서 Source를 "GitHub Actions"로 선택하면, GitHub이 자체적으로 표준 템플릿(`pages/static`)을 제안해준다. **"Configure"** 버튼을 누르면 브라우저 안에서 바로 `.github/workflows/static.yml` 파일이 만들어진 편집 화면이 뜨고, 그 안 내용은 my-blog에 이미 있던 파일과 **완전히 동일**했다 (둘 다 GitHub 공식 표준 템플릿이라서). 여기서 "Commit changes..."만 누르면 끝 — Source 전환과 워크플로 파일 생성이 한 번에 처리된다.
+
+```
+github.com/<계정>/<저장소>/new/main?filename=.github%2Fworkflows%2Fstatic.yml&pages_workflow_template=pages%2Fstatic
+```
+
+로컬에서 파일을 만들고 push하는 것보다 이쪽이 더 간단했다. 다만 한 가지 챙겨야 할 게 있었다.
+
+> **주의**: 이 커밋은 GitHub 웹에서 직접 만들어지는 것이라 로컬 저장소에는 반영되지 않는다. 로컬 작업을 계속하려면 `git pull`로 한 번 동기화해줘야 한다.
+
+```bash
+cd claude-code-master
+git pull
+```
+
 ## 실습하며 나온 질문들 (Q&A)
 
 오늘 배포를 진행하면서 실제로 막히고 궁금했던 것들을 정리했다.
@@ -142,6 +167,16 @@ A). `id`는 그 step에 붙이는 **이름표**로, 자유롭게 지을 수 있�
 
 **Q). pull 받았는데 워크플로우 `yml` 파일이 안 보인다?**
 A). `.github`처럼 점(`.`)으로 시작하는 폴더는 숨김 처리라 화면에서 가려질 뿐, 파일은 정상적으로 존재한다(pull은 제대로 받아진 것). VS Code 탐색기 맨 위의 `.github`를 펼치거나 `Cmd+P`로 `static.yml`을 검색하면 된다. Finder에서는 `Cmd+Shift+.`로 숨김 파일을 표시한다. 터미널에서는 `git ls-files .github/`로 추적 여부를 바로 확인할 수 있다.
+
+**Q). Private 저장소인데도 Pages를 켤 수 있었다. my-blog 때는 안 됐었는데?**
+A). 무료 플랜에서도 Private 저장소로 Pages 배포 자체는 가능하다(당시 my-blog가 막혔던 건 다른 이유였음 — 위 3번 참고). 다만 **배포된 사이트 자체는 저장소 공개 여부와 무관하게 누구나 접근 가능한 public URL**로 열린다. 사이트까지 비공개로 유지하려면 GitHub Pro/Team/Enterprise가 필요하다.
+
+**Q). Source를 "GitHub Actions"로 바꿨는지 어떻게 확인하나?**
+A). `gh api repos/<계정>/<저장소>/pages` 실행 결과의 `build_type` 값으로 확인할 수 있다. `"legacy"`면 "Deploy from a branch", `"workflow"`면 GitHub Actions 방식이다.
+
+```bash
+gh api repos/jek-alti/claude-code-master/pages
+```
 
 ## 정리하며
 
