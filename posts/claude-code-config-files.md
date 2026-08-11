@@ -9,8 +9,71 @@
 | 파일 | 역할 | 위치 / 비고 |
 | --- | --- | --- |
 | `CLAUDE.md` | 클로드 코드가 작업 시 **가장 먼저 읽는 지침 문서**. 가장 중요하며, 프로젝트 전체에 적용되는 내용을 적는다. | 프로젝트 폴더 바로 아래. `~/.claude/CLAUDE.md`에 두면 **모든 프로젝트에 적용되는 전역 지침**이 된다. |
-| `CLAUDE.local.md` | `local`이 들어간 파일은 **깃에 올리지 않는 개인용** 설정이라는 뜻. | 개인 오버라이드용 |
+| `CLAUDE.local.md` | `local`이 들어간 파일은 **깃에 올리지 않는 개인용** 설정이라는 뜻. `.gitignore`에 `**/CLAUDE.local.md` 패턴을 추가해야 하며, 개인 테스트 URL이나 샌드박스 설정 등을 저장하기 좋다. | 개인 오버라이드용 |
 | `AGENTS.md` | 커서(Cursor), 코덱스(Codex) 등 **다른 에이전트에서 `CLAUDE.md`와 같은 역할**을 하는 문서. | 에이전트 공용 지침 |
+
+### 유형에 따른 메모리 위치
+
+CLAUDE.md는 유형에 따라 아래 세 위치 중 하나에 둘 수 있고, 공유 범위가 각각 다르다.
+
+| 유형 | 위치 | 용도 | 공유 범위 |
+| --- | --- | --- | --- |
+| 프로젝트 메모리 | `[프로젝트]/CLAUDE.md`<br>`[프로젝트]/.claude/CLAUDE.md` | 팀 공유 프로젝트 설정 | 팀(깃 커밋) |
+| 사용자 메모리 | `~/.claude/CLAUDE.md` | 개인 전역 설정 | 본인만 |
+| 프로젝트 로컬 | `[프로젝트]/CLAUDE.local.md` | 개인 프로젝트별 설정 | 본인만(`.gitignore`) |
+
+`CLAUDE.local.md`는 반드시 `.gitignore`에 `**/CLAUDE.local.md` 같은 패턴으로 추가해야 한다. 개인적인 테스트 URL이나 샌드박스 설정 등, 팀과 공유하면 안 되는 값을 저장하기에 좋다.
+
+### 전역 디렉터리 (`~/.claude/`)
+
+모든 프로젝트에 공통으로 적용되는 설정으로, 개인 코딩 스타일·선호 도구·공통 명령어 등을 저장한다. 깃에는 포함되지 않는다.
+
+```
+~/.claude/
+├── CLAUDE.md         # 개인 전역 메모리
+├── settings.json     # 사용자 설정
+└── commands/
+    └── my-review.md  # 개인 커스텀 명령어
+```
+
+| 파일 | 용도 |
+| --- | --- |
+| `CLAUDE.md` | 기술 스택, 코딩 원칙, 네이밍 규칙, 커밋 규칙, 선호/비선호 패턴 |
+| `settings.json` | 들여쓰기, 따옴표, TS strict 등 기계적 설정 |
+| `my-review.md` | 타입/보안/성능 체크리스트 기반 리뷰 |
+
+### 프로젝트 디렉터리 (`[프로젝트]/.claude/`)
+
+특정 프로젝트에만 적용되는 팀 공유 설정이다. `settings.local.json`은 `.gitignore`에 추가해서 깃 추적 대상에서 제외하면, `settings.json`(팀 공유)과 분리된 개인용 설정만 남길 수 있다.
+
+```
+my-project/
+├── CLAUDE.md                    # 프로젝트 개요 (기술 스택, API 명세)
+└── .claude/
+    ├── CLAUDE.md                # 상세 코딩 컨벤션
+    ├── settings.json             # 팀 공유 설정 (Git 커밋 ✓)
+    ├── settings.local.json       # 개인 설정 (Git 제외 X)
+    ├── commands/
+    │   ├── deploy.md             # Vercel 배포 명령어
+    │   └── migrate.md            # Prisma 마이그레이션 명령어
+    ├── agents/
+    │   └── todo-crud.md          # TODO CRUD 구현 에이전트
+    └── rules/
+        ├── api-rules.md          # API 작업 시 자동 적용 규칙
+        └── component-rules.md    # 컴포넌트 작업 시 자동 적용 규칙
+```
+
+| 파일 | 깃 | 용도 |
+| --- | --- | --- |
+| `CLAUDE.md`(루트) | ✓ | 프로젝트 개요, 도메인 모델, API 명세 |
+| `.claude/CLAUDE.md` | ✓ | 코딩 컨벤션, 네이밍 규칙, 금지 사항 |
+| `settings.json` | ✓ | TS 설정, 린트 규칙, 배포 환경 변수 |
+| `settings.local.json` | x | 로컬 DB URL, 개인 환경설정 |
+| `deploy.md` | ✓ | 배포 체크리스트 + 롤백 가이드 |
+| `migrate.md` | ✓ | Prisma 마이그레이션 가이드 |
+| `todo-crud.md` | ✓ | TODO 기능 구현 템플릿 |
+| `api-rules.md` | ✓ | `src/api/**` 작업 시 자동 적용 |
+| `component-rules.md` | ✓ | `src/components/**` 작업 시 자동 적용 |
 
 ## 2. MCP 설정 파일
 
