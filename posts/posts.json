@@ -1,5 +1,12 @@
 [
   {
+    "slug": "명령어총정리와-github연동-2026-08-13",
+    "title": "클로드 코드 명령어 총정리부터 GitHub 연동까지",
+    "date": "2026-08-13",
+    "summary": "슬래시 명령어·단축키 표를 정리하고 /context·/compact·/clear 차이, CLAUDE.md 위치와 모델 설정 우선순위, .claude/rules·@import 차이를 문서로 검증한 뒤, GitHub Projects·GitLens·study-upload 커맨드 트러블슈팅까지 정리했습니다.",
+    "tags": ["회고", "Claude Code", "명령어", "GitHub"]
+  },
+  {
     "slug": "씽킹모드-완전정리-2026-08-09",
     "title": "클로드 코드 Thinking Mode와 Effort 완전 정리",
     "date": "2026-08-09",
