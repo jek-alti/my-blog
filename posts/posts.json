@@ -1,5 +1,12 @@
 [
   {
+    "slug": "코드탐색부터-컨텍스트엔지니어링까지-2026-08-18",
+    "title": "코드 탐색 기법부터 컨텍스트 엔지니어링까지",
+    "date": "2026-08-18",
+    "summary": "grep·LSP·CodeSight 코드 탐색 3방식, 회귀방지 커버리지 전략, PR과 /review·/simplify·/security-review, Anthropic 컨텍스트 엔지니어링·context rot·KV-cache, Kent Beck 증강코딩, 플러그인 vs 스킬과 Codex 비교, LSP 플러그인 설치 과정까지 정리했습니다.",
+    "tags": ["회고", "Claude Code", "컨텍스트엔지니어링", "LSP", "Kent Beck"]
+  },
+  {
     "slug": "명령어총정리와-github연동-2026-08-13",
     "title": "클로드 코드 명령어 총정리부터 GitHub 연동까지",
     "date": "2026-08-13",
