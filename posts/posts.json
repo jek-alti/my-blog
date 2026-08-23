@@ -1,5 +1,12 @@
 [
   {
+    "slug": "LSP실측-2026-08-23",
+    "title": "Claude Code LSP, 설정 없이 되는지 실측까지 해봤다",
+    "date": "2026-08-23",
+    "summary": "LSP 도구가 설정 없이 이미 동작한다는 걸 확인하고, jsconfig.json을 프로젝트에 맞춰 세팅한 뒤 LSP와 grep을 같은 질문으로 맞붙여 호출 수·반환 줄 수·소요시간을 실측하며 이 세션엔 전용 Grep 도구가 없다는 사실까지 발견했습니다.",
+    "tags": ["회고", "Claude Code", "LSP", "grep", "jsconfig"]
+  },
+  {
     "slug": "TDD실전과-폴더스코프-2026-08-20",
     "title": "스킬·슬래시 명령도 폴더에 묶인다 — Excel 메뉴판으로 배우는 TDD 실전",
     "date": "2026-08-20",
