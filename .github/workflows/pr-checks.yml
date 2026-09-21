@@ -26,7 +26,6 @@ jobs:
         with:
           args: >-
             --no-progress
-            --exclude-mail
             --exclude-loopback
             './**/*.html'
           fail: true
