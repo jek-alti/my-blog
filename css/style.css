@@ -4,33 +4,33 @@
    HTML/JS 의 클래스·ID 구조는 그대로 두고 스타일만 재구성.
    ========================================================= */
 
-/* ---------- 기본(다크): 시안/마젠타 네온 ---------- */
+/* ---------- 기본(다크): 가을 앰버/러스트 ---------- */
 :root,
 :root[data-theme="dark"] {
-  --bg: #04040a;
-  --bg-2: #080812;
-  --surface: rgba(10, 12, 24, 0.72);
-  --surface-solid: #0a0c18;
-  --text: #d7faff;
-  --text-muted: #7fa8b8;
-  --border: rgba(0, 255, 240, 0.28);
+  --bg: #16130d;
+  --bg-2: #221d12;
+  --surface: rgba(30, 20, 12, 0.72);
+  --surface-solid: #1e140c;
+  --text: #ffe9d1;
+  --text-muted: #c9a687;
+  --border: rgba(255, 157, 61, 0.28);
 
-  --neon-1: #00fff0; /* 시안 */
-  --neon-2: #ff2bd6; /* 마젠타 */
-  --neon-3: #9d5cff; /* 퍼플 */
+  --neon-1: #ff9d3d; /* 앰버 */
+  --neon-2: #e2543d; /* 러스트 */
+  --neon-3: #ffcc55; /* 골든옐로 */
 
   --accent: var(--neon-1);
   --accent-2: var(--neon-2);
 
-  --code-bg: rgba(0, 255, 240, 0.06);
-  --code-text: #6dffe9;
+  --code-bg: rgba(255, 157, 61, 0.06);
+  --code-text: #ffb870;
   --quote-bar: var(--neon-2);
 
-  --glow-accent: 0 0 6px rgba(0, 255, 240, 0.7), 0 0 18px rgba(0, 255, 240, 0.35);
-  --glow-accent-2: 0 0 6px rgba(255, 43, 214, 0.7), 0 0 18px rgba(255, 43, 214, 0.35);
-  --card-glow: 0 0 0 1px var(--border), 0 0 20px rgba(0, 255, 240, 0.12);
+  --glow-accent: 0 0 6px rgba(255, 157, 61, 0.7), 0 0 18px rgba(255, 157, 61, 0.35);
+  --glow-accent-2: 0 0 6px rgba(226, 84, 61, 0.7), 0 0 18px rgba(226, 84, 61, 0.35);
+  --card-glow: 0 0 0 1px var(--border), 0 0 20px rgba(255, 157, 61, 0.12);
   --card-glow-hover: 0 0 0 1px var(--neon-1),
-    0 0 28px rgba(0, 255, 240, 0.35), 0 0 60px rgba(255, 43, 214, 0.15);
+    0 0 28px rgba(255, 157, 61, 0.35), 0 0 60px rgba(226, 84, 61, 0.15);
 
   --content-width: 1080px;
   --read-width: 720px;
